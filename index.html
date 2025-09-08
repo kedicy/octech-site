@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OcTech Limited</title>
+  <link rel="stylesheet" href="css/style.css" />
+
+  <!-- Minimal page-specific styles for the products bounce + bullets -->
+  <style>
+    /* Products section shell */
+    #products { background: var(--light-gray, #F8F9FA); padding: 40px 0; }
+
+    /* Viewport clamps visible area; track is the moving row */
+    .products-viewport {
+      overflow: hidden;
+      max-width: 1200px;            /* set to 100% if you prefer full width */
+      margin: 0 auto;
+      position: relative;
+    }
+    .products-track {
+      display: flex;
+      gap: 30px;
+      align-items: stretch;
+      width: max-content;           /* natural width; allows smooth scroll */
+      will-change: transform;
+    }
+
+    /* Cards */
+    .product-card {
+      flex: 0 0 320px;              /* fixed width for smoother bouncing */
+      background: #fff;
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      text-align: left;
+    }
+    .product-card h3 {
+      color: var(--blue, #004B87);
+      margin-bottom: 10px;
+      font-size: 1.1rem;
+    }
+    .product-card img {
+      display: block;
+      width: 100%;
+      border-radius: 6px;
+      margin: 10px 0 8px;
+    }
+
+    /* Bullets */
+    .product-card .features {
+      margin: 12px 0 0;
+      padding-left: 18px;
+      list-style: disc;
+      color: var(--dark-gray, #555);
+      line-height: 1.5;
+      text-align: left;
+    }
+    .product-card .features li + li { margin-top: 6px; }
+
+    /* UX hint */
+    .products-viewport:hover { cursor: grab; }
+  </style>
+</head>
+<body>
+  <!-- ===== Header ===== -->
+  <header>
+    <nav>
+      <div class="logo">
+        <img src="images/Octech logo.png" alt="OcTech Logo" loading="lazy" />
+      </div>
+      <ul class="nav-links">
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="qsimplified.html">QSimplified</a></li>
+        <li><a href="careers.html">Careers</a></li>
+        <li><a href="voc.html">Voice of Customer</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- ===== Dynamic Content Container ===== -->
+  <main id="content">
+    <!-- Hero Section -->
+    <section class="hero">
+      <h1>Countless Possibilities with OcTech</h1>
+      <p>Simplifying technology for a smarter tomorrow.</p>
+      <!-- changed btn-primary -> btn to match your CSS -->
+      <a href="services.html" class="btn">Explore Our Solutions</a>
+    </section>
+
+    <!-- ===== Products (Single Set, Edge-to-Edge Bounce) ===== -->
+    <section id="products" aria-label="OcTech Products">
+      <div class="products-viewport">
+        <div class="products-track">
+          <!-- QSimplified -->
+          <div class="product-card">
+            <h3>QSimplified – Queue Management</h3>
+            <img src="images/qsimplified.png" alt="QSimplified" loading="lazy" />
+            <ul class="features">
+              <li>Smart branch queuing</li>
+              <li>Ticketing, display, audio announcements</li>
+              <li>Bank-tested, user feedback</li>
+              <li>Live dashboard and feedback module</li>
+            </ul>
+          </div>
+
+          <!-- VisReg -->
+          <div class="product-card">
+            <h3>VisReg – Visitor Registration</h3>
+            <img src="images/visreg.png" alt="VisReg" loading="lazy" />
+            <ul class="features">
+              <li>Seamless digital check-in for branch visitors</li>
+              <li>Capture photo, ID, and visit purpose securely</li>
+              <li>Generates branded visitors badges for controlled access</li>
+              <li>Real-time logs, analytics, and audit-ready reports</li>
+            </ul>
+          </div>
+
+          <!-- Business Intelligence -->
+          <div class="product-card">
+            <h3>Business Intelligence</h3>
+            <img src="images/intelligence.png" alt="Business Intelligence" loading="lazy" />
+            <ul class="features">
+              <li>Real-time data dashboards and analytics</li>
+              <li>Visual reports for smarter decision making</li>
+              <li>Track KPIs, trends, and customer behavior</li>
+              <li>Integrates with existing systems for insights</li>
+            </ul>
+          </div>
+
+          <!-- Multimedia Ads Display -->
+          <div class="product-card">
+            <h3>Multimedia Ads Display</h3>
+            <img src="images/multimedia.png" alt="Multimedia Ads" loading="lazy" />
+            <ul class="features">
+              <li>Dynamic ads scheduling and content rotation</li>
+              <li>Supports images, videos, and live feeds</li>
+              <li>Targeted promotions by branch or location</li>
+              <li>Remote management and real-time updates</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services Preview -->
+    <section class="services-preview">
+      <h2>Our Services</h2>
+      <div class="services-grid">
+        <a href="services.html#Software Development" class="service">Software Development</a>
+    <a href="services.html#Cloud Solutions" class="service">Cloud Solutions</a>
+    <a href="services.html#Cybersecurity" class="service">Cybersecurity</a>
+    <a href="services.html#IT Consulting" class="service">IT Consulting</a>
+  </div>
+    </section>
+  </main>
+
+  <!-- ===== Footer ===== -->
+  <footer>
+    <p>&copy; 2025 OcTech Limited. All rights reserved.</p>
+  </footer>
+
+  <!-- Your existing SPA/dynamic loader (if any) -->
+  <script src="js/script.js"></script>
+
+  <!-- Edge-to-edge "bounce" scroll for products (single set, no duplication) -->
+  <script>
+    (function () {
+      const viewport = document.querySelector('.products-viewport');
+      const track = document.querySelector('.products-track');
+      if (!viewport || !track) return;
+
+      let direction = 1;                 // 1 => right, -1 => left
+      let rafId = null;
+      let paused = false;
+      const edgePauseMs = 600;           // pause at edges (ms)
+      const base = 0.6;                  // base speed (px / frame)
+      const amp  = 1.0;                  // extra speed in the middle (px / frame)
+
+      // Respect user "reduced motion" setting
+      const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      function maxScroll() {
+        return Math.max(0, track.scrollWidth - viewport.clientWidth);
+      }
+
+      function step() {
+        if (!paused && !reducedMotion) {
+          const max = maxScroll();
+          const pos = viewport.scrollLeft;
+
+          // progress across the track: 0 at left edge, 1 at right edge
+          const progress = max === 0 ? 0 : pos / max;
+
+          // Ease: faster in the middle, slower near edges
+          const v = base + amp * Math.sin(Math.PI * progress);
+
+          viewport.scrollLeft = pos + v * direction;
+
+          // Hit edges? clamp, pause, and reverse
+          if (viewport.scrollLeft <= 0) {
+            viewport.scrollLeft = 0;
+            bounceReverse();
+          } else if (viewport.scrollLeft >= max) {
+            viewport.scrollLeft = max;
+            bounceReverse();
+          }
+        }
+        rafId = requestAnimationFrame(step);
+      }
+
+      function bounceReverse() {
+        paused = true;
+        setTimeout(() => {
+          direction *= -1;
+          paused = false;
+        }, edgePauseMs);
+      }
+
+      // Start
+      rafId = requestAnimationFrame(step);
+
+      // Pause on hover/touch
+      const setPaused = (v) => paused = v;
+      viewport.addEventListener('mouseenter', () => setPaused(true));
+      viewport.addEventListener('mouseleave', () => setPaused(false));
+      viewport.addEventListener('touchstart', () => setPaused(true), { passive: true });
+      viewport.addEventListener('touchend', () => setPaused(false));
+
+      // Keep things sane on resize
+      window.addEventListener('resize', () => {
+        const max = maxScroll();
+        if (viewport.scrollLeft > max) viewport.scrollLeft = max;
+      });
+    })();
+  </script>
+</body>
+</html>
